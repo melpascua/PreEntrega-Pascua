@@ -1,31 +1,67 @@
-let edad = parseInt(prompt("Ingrese su edad"));
-let nombre;
-let numeroDeTelefono;
-let finalizar;
-
-while (finalizar !== "Salir") {
-    if (edad < 18) {
-        alert("No puede acceder a nuestro sitio web. Usted debe de ser mayor de edad.");
-        edad = prompt("Indique una edad válida")
-    }
-    if (edad >= 18) {
-        alert("¡Bienvenido a nuestro sitio web!");
-
-        nombre = prompt("Por favor, indique su nombre completo a continuación");
-        if (nombre == "") {
-            nombre = prompt("Por favor, ingrese un nombre válido");
-        }
-
-        numeroDeTelefono = parseInt(prompt("Por favor, indique su número de teléfono"));
-        if (numeroDeTelefono == 0) {
-            numeroDeTelefono = parseInt(prompt("Por favor, ingrese un número de teléfono válido"))
-        }
-
-        console.log("La edad ingresada es: " + edad);
-        console.log("El nombre ingresado es: " + nombre);
-        console.log("El número de teléfono ingresado es: " + numeroDeTelefono);
-
-        finalizar = prompt("Si usted a ingresado todos los datos correctamente, finalice el programa escribiendo 'Salir' a continuación. Sino, simplemente deje el espacio en blanco.")
+class Libro {
+    constructor(numeroDeSerie, titulo, autor, precio) {
+        this.numeroDeSerie = numeroDeSerie;
+        this.autor = titulo;
+        this.titulo = autor;
+        this.precio = Number(precio);
     }
 }
-console.log("Finalizó el programa")
+
+/* function librosAEscoger(numero) {
+    return librosDisponibles.find((libro) => {
+        return libro.numero === numero;
+    })
+}
+ */
+//*Funciones 
+function elLibroExiste(numeroDeSerie) {
+    return librosDisponibles.find((libro) => {
+        return libro.numeroDeSerie === numeroDeSerie;
+    })
+}
+function calcularTotal (libro, librosDelUsuario) {
+    return libro * librosDelUsuario
+}
+
+//*Arrays
+let librosDisponibles = [
+    new Libro("HJSIU7542", "Rojo, BLanco y Sangre Azul", "Casey McQuiston", 3000),
+    new Libro("PODS9758F", "Corazón de Tinta", "Cornelia Funke", 4000),
+    new Libro("SDAGRE234", "Harry Potter y la Piedra Filosofal", "J.K. Rowling", 6000),
+    new Libro("LOP789SJH", "Cazadores de Sombras 1: Ciudad de Hueso", "Cassandra Clare", 5000)
+];
+
+
+let librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'SALIR'.");
+
+while (librosDelUsuario !== "SALIR") {
+    //*¿el libro está disponible?
+
+    const libro = elLibroExiste(librosDelUsuario);
+
+
+    if (librosDelUsuario !== undefined) {
+        librosDelUsuario = prompt("El libro se ha añadido exitosamente a su carrito de compras ¿Desea continuar? Ingrese 'SALIR' si desea finalizar el programa.");
+
+        //*Se pregunta al usuario si desea comprar algo más.
+
+        if (librosDelUsuario === "SI") {
+            let librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'NO'");
+        }
+
+        else if (librosDelUsuario === "SALIR") {
+            alert("¡Gracias por elegirnos! ¡Vuelva pronto!")
+            break;
+        }
+
+        const total = calcularTotal (libro, librosDelUsuario);
+
+        alert(`${total}`);
+
+    } else {
+        alert("Ese libro no está disponible.");
+    }
+
+    //*se vuelve a preguntar al usuario lo que desea hacer
+    librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'SALIR'.");
+}
