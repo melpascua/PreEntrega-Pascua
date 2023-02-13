@@ -24,8 +24,8 @@ function elLibroExiste(numeroDeSerie) {
         return libro.numeroDeSerie === numeroDeSerie;
     })
 }
-function calcularTotal (libro, librosDelUsuario) {
-    return libro * librosDelUsuario
+function calcularTotal (precio) {
+    return precio;
 }
 
 let librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'SALIR'.");
@@ -37,12 +37,12 @@ while (librosDelUsuario !== "SALIR") {
 
 
     if (libro !== undefined) {
-        librosDelUsuario = prompt("El libro se ha añadido exitosamente a su carrito de compras ¿Desea continuar? Ingrese 'SALIR' si desea finalizar el programa.");
+        preguntaContinuar = prompt("El libro se ha añadido exitosamente a su carrito de compras ¿Desea continuar? Ingrese 'SALIR' si desea finalizar el programa.");
 
         //*Se pregunta al usuario si desea comprar algo más.
 
-        if (librosDelUsuario === "SI") {
-            let librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'NO'");
+        if (preguntaContinuar === "SI") {
+            librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'NO'");
         }
 
         else if (librosDelUsuario === "SALIR") {
