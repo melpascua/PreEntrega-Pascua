@@ -7,21 +7,7 @@ class Libro {
     }
 }
 
-/* function librosAEscoger(numero) {
-    return librosDisponibles.find((libro) => {
-        return libro.numero === numero;
-    })
-}
- */
-//*Funciones 
-function elLibroExiste(numeroDeSerie) {
-    return librosDisponibles.find((libro) => {
-        return libro.numeroDeSerie === numeroDeSerie;
-    })
-}
-function calcularTotal (libro, librosDelUsuario) {
-    return libro * librosDelUsuario
-}
+
 
 //*Arrays
 let librosDisponibles = [
@@ -32,6 +18,16 @@ let librosDisponibles = [
 ];
 
 
+//*Funciones 
+function elLibroExiste(numeroDeSerie) {
+    return librosDisponibles.find((libro) => {
+        return libro.numeroDeSerie === numeroDeSerie;
+    })
+}
+function calcularTotal (libro, librosDelUsuario) {
+    return libro * librosDelUsuario
+}
+
 let librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'SALIR'.");
 
 while (librosDelUsuario !== "SALIR") {
@@ -40,7 +36,7 @@ while (librosDelUsuario !== "SALIR") {
     const libro = elLibroExiste(librosDelUsuario);
 
 
-    if (librosDelUsuario !== undefined) {
+    if (libro !== undefined) {
         librosDelUsuario = prompt("El libro se ha añadido exitosamente a su carrito de compras ¿Desea continuar? Ingrese 'SALIR' si desea finalizar el programa.");
 
         //*Se pregunta al usuario si desea comprar algo más.
