@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Tu carrito</title>
 </head>
@@ -18,16 +19,81 @@
             </div>
             <nav>
                 <ul class="nav">
-                    <li><a href="./index.html">Principal</a></li>
+                    <li><a href="../index.html">Principal</a></li>
                     <li><a href="">Menú</a></li>
-                    <li><a href="">Tienda</a></li>
+                    <li><a href="../index.html">Tienda</a></li>
                     <li><a href="">Nosotros</a></li>
                     <li><a href="">Contacto</a></li>
-                    <li><a href="./pages/carrito.html">Tus compras</a></li>
+                    <li><a href="./carrito.html">Tus compras</a></li>
                 </ul>
             </nav>
         </header>
     </div>
+
+    <main>
+        <h1 class="titulo-carrito">Tu carrito</h1>
+        <div class="contenedor-carrito">
+            <p class="carrito-vacio"> ¡Ups! ¡No hay nada que ver aquí!</p>
+
+            <div class="productos-carrito">
+                <div class="producto-carrito">
+                    <img src="../img/capsulas-nespresso.png" alt="" class="producto-carrito-imagen">
+                    <div class="carrito-producto-nombre">
+                        <h3>Nombre</h3>
+                        <h4>Cápsulas Nespresso</h4>
+                    </div>
+                    <div class="cantidad">
+                        <h3>Cantidad</h3>
+                        <p>1</p>
+                    </div>
+                    <div class="precio-carrito">
+                        <h3>Precio</h3>
+                        <p>$40</p>
+                    </div>
+                    <div class="subtotal">
+                        <h3>Subtotal</h3>
+                        <p>$40</p>
+                    </div>
+                    <button class="eliminar"><i class="bi bi-trash3-fill"></i></button>
+                </div>
+
+                <div class="producto-carrito">
+                    <img src="../img/capsulas-nespresso.png" alt="" class="producto-carrito-imagen">
+                    <div class="carrito-producto-nombre">
+                        <h3>Nombre</h3>
+                        <h4>Cápsulas Nespresso</h4>
+                    </div>
+                    <div class="cantidad">
+                        <h3>Cantidad</h3>
+                        <p>1</p>
+                    </div>
+                    <div class="precio-carrito">
+                        <h3>Precio</h3>
+                        <p>$40</p>
+                    </div>
+                    <div class="subtotal">
+                        <h3>Subtotal</h3>
+                        <p>$40</p>
+                    </div>
+                    <button class="eliminar"><i class="bi bi-trash3-fill"></i></button>
+                </div>
+
+            <div class="carrito-acciones">
+                <div class="derecha">
+                    <div class="total">
+                        <p>Total</p>
+                        <p id="total">$20</p>
+                    </div>
+                    <div class="confirmar-compra">
+                        <button>Comprar</button>
+                    </div>
+
+                    <p class="compra-realizada"> ¡Gracias por tu compra!</p>
+
+                </div>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <section class="redes">
@@ -45,6 +111,7 @@
         </section>
     </footer>
 
+    <script src="../js/carrito.js"></script>
 </body>
 
 </html>

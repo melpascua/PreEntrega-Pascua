@@ -1,63 +1,132 @@
-class Libro {
-    constructor(numeroDeSerie, titulo, autor, precio) {
-        this.numeroDeSerie = numeroDeSerie;
-        this.autor = titulo;
-        this.titulo = autor;
-        this.precio = Number(precio);
+//*OBJETOS
+
+
+//*ARRAYS
+
+const listaDeProductos = [
+    {
+        id: "SASD4",
+        nombre: "Cafetera de Filtro",
+        precio: 70,
+        imagen: "../img/maquina-de-cafe-de-filtro (2).png"
+    },
+
+    {
+        id: "SDSE6",
+        nombre: "Cafetera Express",
+        precio: 100,
+        imagen: "../img/maquina-de-cafe-express.png"
+    },
+
+    {
+        id: "YGHD7",
+        nombre: "Cafetera Molinillo",
+        precio: 85,
+        imagen: "../img/maquinade-de-cafe-molinillo.png"
+    },
+
+    {
+        id: "KIOP6",
+        nombre: "Café Molido",
+        precio: 25,
+        imagen: "../img/cafe-molido.png"
+    },
+
+    {
+        id: "OPSY2",
+        nombre: "Granos de Café",
+        precio: 30,
+        imagen: "../img/Sin título-1.png"
+    },
+    {
+        id: "ODYV5",
+        nombre: "Cápsulas",
+        precio: 40,
+        imagen: "../img/capsulas-nespresso.png"
+    },
+    {
+        id: "OTFC7",
+        nombre: "Vasos Reutilizables",
+        precio: 20,
+        imagen: "../img/vasos-reutilizables.png"
+    },
+    {
+        id: "YUCH0",
+        nombre: "Tazas Personalizables",
+        precio: 30,
+        imagen: "../img/taza-reutilizable.png"
+    },
+    {
+        id: "JFUC4",
+        nombre: "Almacen",
+        precio: 15,
+        imagen: "../img/dulce-de-leche.png"
     }
-}
-
-
-
-//*Arrays
-let librosDisponibles = [
-    new Libro("HJSIU7542", "Rojo, BLanco y Sangre Azul", "Casey McQuiston", 3000),
-    new Libro("PODS9758F", "Corazón de Tinta", "Cornelia Funke", 4000),
-    new Libro("SDAGRE234", "Harry Potter y la Piedra Filosofal", "J.K. Rowling", 6000),
-    new Libro("LOP789SJH", "Cazadores de Sombras 1: Ciudad de Hueso", "Cassandra Clare", 5000)
 ];
 
+let carritoDeCompras = [];
 
-//*Funciones 
-function elLibroExiste(numeroDeSerie) {
-    return librosDisponibles.find((libro) => {
-        return libro.numeroDeSerie === numeroDeSerie;
+//*DOM 
+
+let botones = document.querySelectorAll(".boton");
+
+//*FUNCIONES
+
+
+//*esta función reemplaza el HTML y coloca todos los productos en el de forma mucho más dinámica. Recorre cada producto del array "listaDeProductos" y lo crea en el html.
+function cargarProductos() {
+    const contenedorProductos = document.getElementById("contenedor-tienda");
+
+    listaDeProductos.forEach(producto => {
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre} $${producto.precio}</h3>
+        <button class="boton" id="${producto.id}">Añadir al carrito</button>`;
+        contenedorProductos.append(div);
+    });
+    botonesAgregar();
+};
+
+//*detección de click de los botones para agregar al carrito. Se selecciona a cada boton y se le agrega la propiedad. 
+function botonesAgregar() {
+    botones = document.querySelectorAll(".boton");
+
+    botones.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito);
     })
-}
-function calcularTotal (precio) {
-    return precio;
-}
+};
 
-let librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'SALIR'.");
+//*Al presionar el botón, saldrá el ID del producto y esta función recorrerá el array en busca que el primer ID igual a este. y luego se pushea a un Array
+function agregarAlCarrito(e) {
+    const idBoton = e.currentTarget.id;
 
-while (librosDelUsuario !== "SALIR") {
-    //*¿el libro está disponible?
+    const agregandoProducto = listaDeProductos.find(producto => producto.id === idBoton);
 
-    const libro = elLibroExiste(librosDelUsuario);
+    //*Some verificará si ya hay algún producto que coincida con el que se está agregando al array para poder sumar cantidad en vez de agregar un objeto nuevo al array, una entidad nueva. Estos estarán juntos. Si some devuelve false, pusheara el producto.
 
-
-    if (libro !== undefined) {
-        preguntaContinuar = prompt("El libro se ha añadido exitosamente a su carrito de compras ¿Desea continuar? Ingrese 'SALIR' si desea finalizar el programa.");
-
-        //*Se pregunta al usuario si desea comprar algo más.
-
-        if (preguntaContinuar === "SI") {
-            librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'NO'");
-        }
-
-        else if (librosDelUsuario === "SALIR") {
-            alert("¡Gracias por elegirnos! ¡Vuelva pronto!")
-            break;
-        }
-
-        const total = calcularTotal (libro, librosDelUsuario);
-
-        alert(`${total}`);
-
-    } else {
-        alert("Ese libro no está disponible.");
+    if (carritoDeCompras.some(producto => producto.id === idBoton)) {
+        
+        const encontrarIndex = carritoDeCompras.findIndex(producto => producto.id === idBoton);
+        carritoDeCompras[encontrarIndex].cantidad++;
+    }
+    else {
+        //*Se le asgina una propiedad nueva a los productos
+        agregandoProducto.cantidad = 1;
+        
+        carritoDeCompras.push(agregandoProducto);
     }
 
-    //*se vuelve a preguntar al usuario lo que desea hacer
-    librosDelUsuario = prompt("Ingrese el número de serie del libro que desea comprar. De lo contrario, ingrese 'SALIR'.");
-}
+
+    //*Ahora guardamos el array carritoDeCompras en el local storage para poder enviarlo a la página de carrito
+
+    localStorage.setItem("productos-en-carrito", JSON.stringify(carritoDeCompras));
+};
+
+
+//*INICIO DEL PROGRAMA
+
+botonesAgregar();
+
+cargarProductos();
