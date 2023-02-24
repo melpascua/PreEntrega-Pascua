@@ -73,7 +73,7 @@ let botones = document.querySelectorAll(".boton");
 //*FUNCIONES
 
 
-//*esta función reemplaza el HTML y coloca todos los productos en el de forma mucho más dinámica. Recorre cada producto del array "listaDeProductos" y lo crea en el html.
+//*esta función reemplaza el HTML y coloca todos los productos en el de forma mucho más dinámica. Recorre cada producto del array "listaDeProductos" y los crea en el html.
 function cargarProductos() {
     const contenedorProductos = document.getElementById("contenedor-tienda");
 
