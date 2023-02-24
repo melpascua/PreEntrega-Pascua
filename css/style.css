@@ -155,8 +155,9 @@ footer a img {
     margin-bottom: 10px;
 }
 
-.carrito-vacio, .compra-realizada {
-    display: none;
+
+.carrito {
+    height: 750px;
 }
 
 .productos-carrito {
@@ -182,6 +183,12 @@ footer a img {
     font-size: 15px;
 }
 
+.carrito-vacio {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .eliminar {
     border: 0;
     background-color: transparent;
@@ -197,4 +204,14 @@ footer a img {
 .carrito-acciones {
     display: flex;
     justify-content: center;
+}
+
+#compra-realizada {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.disabled {
+    display: none;
 }
