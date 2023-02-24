@@ -130,3 +130,9 @@ function agregarAlCarrito(e) {
 botonesAgregar();
 
 cargarProductos();
+
+
+
+
+
+const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));

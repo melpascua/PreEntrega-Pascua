@@ -25,6 +25,8 @@ if (productosEnCarrito) {
 
 
 
+    carritoConProductos.innerHTML = "";
+
     //*Por cada producto seleccionado por el usuario, creará un div con la clase nombrada abajo y con los siguientes elementos dentro de él:
 
     productosEnCarrito.forEach(producto => {
@@ -49,7 +51,9 @@ if (productosEnCarrito) {
                 <p>$${producto.precio * producto.cantidad}</p>
             </div>
             <button class="eliminar" id="${producto.id}"><i class="bi bi-trash3-fill"></i></button>
-        `
+        `;
+
+        carritoConProductos.append(div);
 
     });
 
