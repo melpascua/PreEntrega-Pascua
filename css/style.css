@@ -183,10 +183,11 @@ footer a img {
     font-size: 15px;
 }
 
-.carrito-vacio {
+.carrito-vacio, #compra-realizada {
     font-size: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
+    color: #715138;
 }
 
 .eliminar {
@@ -204,12 +205,6 @@ footer a img {
 .carrito-acciones {
     display: flex;
     justify-content: center;
-}
-
-#compra-realizada {
-    font-size: 30px;
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .disabled {

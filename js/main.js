@@ -1,6 +1,3 @@
-//*OBJETOS
-
-
 //*ARRAYS
 
 const listaDeProductos = [
@@ -64,7 +61,17 @@ const listaDeProductos = [
     }
 ];
 
-let carritoDeCompras = [];
+let carritoDeCompras;
+
+//*Para que el carrito de compras no comience vacío si es que este tiene agregado algún producto.
+const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
+
+if (productosEnCarritoLS) {
+    carritoDeCompras = productosEnCarritoLS;
+} else {
+    carritoDeCompras = [];
+}
+
 
 //*DOM 
 
@@ -135,4 +142,3 @@ cargarProductos();
 
 
 
-const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
