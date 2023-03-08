@@ -19,7 +19,7 @@ const listaDeProductos = [
         id: "YGHD7",
         nombre: "Cafetera Molinillo",
         precio: 85,
-        imagen: "./img/maquinade-de-cafe-molinillo.png"
+        imagen: "../img/maquinade-de-cafe-molinillo.png"
     },
 
     {
