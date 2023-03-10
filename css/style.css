@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 
@@ -153,6 +154,7 @@ footer a img {
     border-top: 2px #a8723c solid;
     border-bottom: 2px #a8723c solid;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 
@@ -171,6 +173,7 @@ footer a img {
     justify-content: space-between;
     align-items: center;
     text-align: left;
+    color: black;
 }
 
 .producto-carrito-imagen {

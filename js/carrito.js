@@ -35,7 +35,7 @@ function cargarProductosCarrito() {
         //*Se oculta el mensaje de compra realizada ya que aún no se ha realizado ninguna compra.
         compraRealizada.classList.add("disabled");
 
-        
+
         carritoConProductos.innerHTML = "";
 
         //*Por cada producto seleccionado por el usuario, creará un div con la clase nombrada abajo y con los siguientes elementos dentro de él:
@@ -125,22 +125,44 @@ function actualizacionDelTotal() {
     totalAPagar.innerText = `$${totalCalculado}`;
 };
 
+
+
+
 //*Al no estar realizando una compra real, vacíaremos el array.
 function compraDeProductos() {
-    productosEnCarrito.length = 0;
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
-    //*Mensaje de carrito vacío desaparece al haber realizado la compra.
-    carritoVacio.classList.add("disabled");
+    //*Al presionar el botón, la alerta aparecerá, preguntándole al usuario si desea proceder con la compra. Si el usuario dice que sí, se realizará toda la operación.
+    Swal.fire({
+        title: '¿Deseas confirmar tu compra?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí!',
+        cancelButtonText: 'Cancelar'
+    }).then((resultado) => {
+        if (resultado.isConfirmed) {
+            Swal.fire(
+                '¡Listo!',
+                '¡Tu compra ha sido realizada correctamente!',
+                'success'
+            )
+            productosEnCarrito.length = 0;
+            localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
-    //*Las acciones desaparecen al NO haber un producto en el carrito, ya que NO se pueden realizar.
-    acciones.classList.add("disabled");
+            //*Mensaje de carrito vacío desaparece al haber realizado la compra.
+            carritoVacio.classList.add("disabled");
 
-    //*Se le agrega la clase desactivado al NO haber productos en él.
-    carritoConProductos.classList.add("disabled");
+            //*Las acciones desaparecen al NO haber un producto en el carrito, ya que NO se pueden realizar.
+            acciones.classList.add("disabled");
 
-    //*Se muestra el mensaje de compra realizada ya que se ha realizado la compra.
-    compraRealizada.classList.remove("disabled");
+            //*Se le agrega la clase desactivado al NO haber productos en él.
+            carritoConProductos.classList.add("disabled");
+
+            //*Se muestra el mensaje de compra realizada ya que se ha realizado la compra.
+            compraRealizada.classList.remove("disabled");
+        }
+    })
 }
 
 //*INICIO DEL PROGRAMA
