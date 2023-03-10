@@ -61,6 +61,9 @@ const listaDeProductos = [
     }
 ];
 
+//*LIBRERIAS
+
+
 let carritoDeCompras;
 
 //*Para que el carrito de compras no comience vacío si es que este tiene agregado algún producto.
@@ -105,6 +108,7 @@ function botonesAgregar() {
     })
 };
 
+
 //*Al presionar el botón, saldrá el ID del producto y esta función recorrerá el array en busca que el primer ID igual a este. y luego se pushea a un Array
 function agregarAlCarrito(e) {
     const idBoton = e.currentTarget.id;
@@ -114,19 +118,33 @@ function agregarAlCarrito(e) {
     //*Some verificará si ya hay algún producto que coincida con el que se está agregando al array para poder sumar cantidad en vez de agregar un objeto nuevo al array, una entidad nueva. Estos estarán juntos. Si some devuelve false, pusheara el producto.
 
     if (carritoDeCompras.some(producto => producto.id === idBoton)) {
-        
+
         const encontrarIndex = carritoDeCompras.findIndex(producto => producto.id === idBoton);
         carritoDeCompras[encontrarIndex].cantidad++;
     }
     else {
         //*Se le asgina una propiedad nueva a los productos
         agregandoProducto.cantidad = 1;
-        
+
         carritoDeCompras.push(agregandoProducto);
     }
 
+    //*Cada vez que se agregue un producto al carrito, una ventana emergente le avisará al usuario de esto.
+    Toastify({
+        text: "¡El producto se ha agregado al carrito!",
 
-    //*Ahora guardamos el array carritoDeCompras en el local storage para poder enviarlo a la página de carrito
+        close: true,
+        gravity: "top", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+            background: "#7c5033",
+            fontWeight: "bold",
+        },
+    }).showToast();
+
+
+    //*Ahora guardamos el array carritoDeCompras en el local storage para poder enviarlo a la página de carrito.
 
     localStorage.setItem("productos-en-carrito", JSON.stringify(carritoDeCompras));
 };

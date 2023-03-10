@@ -157,7 +157,7 @@ footer a img {
 
 
 .carrito {
-    height: 750px;
+    height: auto;
 }
 
 .productos-carrito {
@@ -188,6 +188,7 @@ footer a img {
     margin-top: 10px;
     margin-bottom: 10px;
     color: #715138;
+    height: 690px;
 }
 
 .eliminar {
@@ -210,3 +211,4 @@ footer a img {
 .disabled {
     display: none;
 }
+

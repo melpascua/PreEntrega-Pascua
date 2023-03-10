@@ -35,8 +35,7 @@ function cargarProductosCarrito() {
         //*Se oculta el mensaje de compra realizada ya que aún no se ha realizado ninguna compra.
         compraRealizada.classList.add("disabled");
 
-
-
+        
         carritoConProductos.innerHTML = "";
 
         //*Por cada producto seleccionado por el usuario, creará un div con la clase nombrada abajo y con los siguientes elementos dentro de él:
@@ -103,15 +102,22 @@ function eliminarDelCarrito(e) {
     //*Al presionar el botón eliminar, se encontrará en el array productosEnCarrito un elemento con el mismo id y se eliminará de este.
     const idBoton = e.currentTarget.id;
     const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
-    productosEnCarrito.splice(index, 1);
+
+    //*Si hay productos acumulados, restará uno
+    if (productosEnCarrito[index].cantidad > 1) {
+        productosEnCarrito[index].cantidad--;
+    } else {
+        productosEnCarrito.splice(index, 1);
+    }
 
     //*Se vuelve a cargar los productos para que la página se actualice, eliminando los productos que fueron quitados del array
     cargarProductosCarrito();
 
     //*Se actualiza el localStorage
-
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-};
+}
+
+//*En este caso no agrego un toastify para alertar al usuario de la eliminación del producto porque él puede verlo y siento que sería demasiado invasivo. En cambio en la tienda, el usuario no tiene la posibilidad de ver si el producto fue agregado al carrito y el toastify se lo asegura.
 
 //*Hay que calcular el total cada que se actualizan los productos en el carrito
 function actualizacionDelTotal() {
@@ -140,7 +146,6 @@ function compraDeProductos() {
 //*INICIO DEL PROGRAMA
 
 cargarProductosCarrito();
-
 
 
 
