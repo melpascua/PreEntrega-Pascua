@@ -1,67 +1,20 @@
 //*ARRAYS
 
-const listaDeProductos = [
-    {
-        id: "SASD4",
-        nombre: "Cafetera de Filtro",
-        precio: 70,
-        imagen: "./img/maquina-de-cafe-de-filtro (2).png"
-    },
+const listaDeProductos = [];
 
-    {
-        id: "SDSE6",
-        nombre: "Cafetera Express",
-        precio: 100,
-        imagen: "./img/maquina-de-cafe-express.png"
-    },
+fetch('./array.json')
+    .then((response) => {
+        return response.json();
+    })
+    .then((json) => {
+        listaDeProductos.push(...json);
 
-    {
-        id: "YGHD7",
-        nombre: "Cafetera Molinillo",
-        precio: 85,
-        imagen: "./img/maquinade-de-cafe-molinillo.png"
-    },
-
-    {
-        id: "KIOP6",
-        nombre: "Café Molido",
-        precio: 25,
-        imagen: "./img/cafe-molido.png"
-    },
-
-    {
-        id: "OPSY2",
-        nombre: "Granos de Café",
-        precio: 30,
-        imagen: "./img/Sin título-1.png"
-    },
-    {
-        id: "ODYV5",
-        nombre: "Cápsulas",
-        precio: 40,
-        imagen: "./img/capsulas-nespresso.png"
-    },
-    {
-        id: "OTFC7",
-        nombre: "Vasos Reutilizables",
-        precio: 20,
-        imagen: "./img/vasos-reutilizables.png"
-    },
-    {
-        id: "YUCH0",
-        nombre: "Tazas Personalizables",
-        precio: 30,
-        imagen: "./img/taza-reutilizable.png"
-    },
-    {
-        id: "JFUC4",
-        nombre: "Almacen",
-        precio: 15,
-        imagen: "./img/dulce-de-leche.png"
-    }
-];
-
-//*LIBRERIAS
+        //*se llama la función productos dentro del "then", ya que el fetch es una función asincrónica.
+        cargarProductos();
+    })
+    .catch((error) => {
+        console.error('Error fetching data:', error);
+    });
 
 
 let carritoDeCompras;
@@ -134,9 +87,9 @@ function agregarAlCarrito(e) {
         text: "¡El producto se ha agregado al carrito!",
 
         close: true,
-        gravity: "top", 
-        position: "right", 
-        stopOnFocus: true, 
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
         style: {
             background: "#7c5033",
             fontWeight: "bold",
@@ -154,7 +107,7 @@ function agregarAlCarrito(e) {
 
 botonesAgregar();
 
-cargarProductos();
+
 
 
 
